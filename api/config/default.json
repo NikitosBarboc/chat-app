@@ -1,4 +1,5 @@
 {
   "port": 3000,
+  "jwtSecret": "#superSecretKey!QWERTY1!JJReds09(0sdse*dWdsdsJdkksdds(eunm,fsodisdjsdeioweklskdsekIjd",
   "mongoUri": "mongodb+srv://nik:qwerty1@cluster0.zk8mygj.mongodb.net/app?retryWrites=true&w=majority"
 }

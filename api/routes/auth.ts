@@ -1,11 +1,11 @@
 import express from 'express';
-// const express = require('express');
-// const { Router } = require('express');
+const jwt = require('jsonwebtoken');
 const route = express.Router();
 const User = require('../modules/User');
 const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const validation = require('../middleware/validation');
+const { jwtSecret } = require("../config/default.json")
 
 route.post(
   "/register",
@@ -27,14 +27,15 @@ route.post(
         return;
       }
 
-      const hashedPassword = await bcrypt(password, 12);
+      const hashedPassword = await bcrypt.hash(password, 12);
       const user = new User({ email, name, password: hashedPassword });
       await user.save();
 
       res.status(201).json({ success: true, message: "User was successful created" });
 
     } catch(e) {
-      res.status(500).json({ success: true, message: "Something went wrong"});
+      console.log(e)
+      res.status(500).json({ success: false, message: "Something went wrong"});
     }
 });
 
@@ -64,10 +65,16 @@ route.post("/login",
         return
       }
 
-      res.status(200).json({ success: true, message: 'User was successful login' });
+      const token = jwt.sign(
+        { userId: user.id },
+        jwtSecret,
+        { expiresIn: '1h' }
+      );
+      console.log(user.id)
+      res.json({ success: true, message: 'User was successful login', token, userId: user.id });
 
     } catch(e) {
-      res.status(500).json({ success: true, message: "Something went wrong"});
+      res.status(500).json({ success: false, message: "Something went wrong"});
     }
   }
 );

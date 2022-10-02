@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var express = require("express");
+var express = require('express');
 var _a = require("../config/default.json"), port = _a.port, mongoUri = _a.mongoUri;
 var mongoose = require("mongoose");
 // const route = require('../routes/auth');
