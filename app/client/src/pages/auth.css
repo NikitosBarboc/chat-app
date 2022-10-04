@@ -1,0 +1,313 @@
+/*-- Reset-Code --*/
+	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+	article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+	ol,ul{list-style:none;margin:0px;padding:0px;}
+	blockquote,q{quotes:none;}
+	blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+	table{border-collapse:collapse;border-spacing:0;}
+	/* start editing from here */
+	a{text-decoration:none;}
+	.txt-rt{text-align:right;}/* text align right */
+	.txt-lt{text-align:left;}/* text align left */
+	.txt-center{text-align:center;}/* text align center */
+	.float-rt{float:right;}/* float right */
+	.float-lt{float:left;}/* float left */
+	.clear{clear:both;}/* clear float */
+	.pos-relative{position:relative;}/* Position Relative */
+	.pos-absolute{position:absolute;}/* Position Absolute */
+	.vertical-base{vertical-align:baseline;}/* vertical align baseline */
+	.vertical-top{vertical-align:top;}/* vertical align top */
+	nav.vertical ul li{display:block;}/* vertical menu */
+	nav.horizontal ul li{display: inline-block;}/* horizontal menu */
+	img{max-width:100%;}
+/*-- //Reset-Code --*/
+body {
+	background:url('../../public/images/bigbg.jpg') 0px 0px ;
+	font-family: 'Open Sans', sans-serif;
+	background-attachment: fixed;
+    background-position: center;
+}
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Muli', sans-serif;
+	
+}
+.main-title{
+	font-size:40px;
+	margin:50px 0px 80px 0px;
+	text-align:center;
+	font-style: normal;
+  font-weight: 800;
+  font-family: Muli, sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	margin: 2em 0;
+}
+.auth-page {
+	width:70%;
+	height: 100vh;
+	margin:0 auto;
+	display: flex;
+	flex-direction: column;
+}
+.auth {
+    width: calc(max(35%, 500px));
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	/* background:#00000073; */
+	background: rgba(0, 0, 0, 0.6);
+	padding: 40px;
+	transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+	margin: 0 auto 3em auto;
+}
+
+.auth-title{
+	font-size:25px;
+	color:#fff;
+	margin-bottom:20px;
+}
+.auth-input-label {
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	font-size: 14px;
+}
+.auth-link {
+	font-size: 17px !important;
+	color: rgb(20, 153, 220);
+	font-size: 14px;
+}
+
+.auth-input {
+	width:93.5%;
+	padding: 15px;
+	border:1px solid #7d7d7d;
+	outline:none;
+	font-size:14px;
+	margin-bottom:20px;
+	border-radius:25px;
+}
+
+.auth-submit-login, .auth-submit-register {
+	padding:13px 0;
+	font-size:16px;
+	color:#fff;
+	cursor:pointer;
+	outline:none;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	width:100%;
+	border:none;
+	margin-top:25px;
+	border-radius:25px;
+}
+
+.auth-submit-login:hover, .auth-submit-register{
+	background: #4056df;
+}
+.input-checkbox {
+	display: inline-block;
+	margin: 0 0vw 10px 0;
+}
+.footer-form {
+	display: flex;
+	justify-content: space-between;
+}
+
+.auth-submit-register:hover, .auth-submit-login {
+	background:  #e91e63;
+}
+.footer p{
+	margin: 10vh 0 0 0;
+	font-size:14px;
+	text-align:center;
+	color: #fafafa;
+	line-height:27px;
+}
+.footer p a{
+	color: #fafafa;
+}
+.footer p a:hover{
+	text-decoration:underline;
+}
+.footer {
+    margin: 2em 0;
+}
+.footer p a:hover {
+    color: #e91e63;
+}
+.needAccount, .haveAccount {
+	margin: 20px 0 0 0;
+	display: block;
+	color: #aac8f5;
+}
+
+/*-- Responsive --*/
+@media screen and (max-width: 1440px) {
+	.auth, .signup-agileinfo {
+		padding:73px;
+	}
+	input[type="text"], input[type="password"] {
+		width: 91%;
+	}
+}
+@media screen and (max-width: 1380px) {
+	.main {
+		width: 100%;
+		margin: 0 auto;
+	}
+	.auth, .signup-agileinfo {
+		padding:63px;
+	}
+}
+@media screen and (max-width: 1024px) {
+	.main-title {
+		margin: 50px 0px 56px 0px;
+	}
+	.auth, .signup-agileinfo {
+		padding:60px;
+	}
+	input[type="text"], input[type="password"] {
+		width: 89%;
+	}
+	.footer {
+		margin: 80px 0 15px 0;
+	}
+	.register-right {
+    margin-top: 2em;
+  }
+}
+
+@media screen and (max-width: 900px) {
+	.auth, .signup-agileinfo {
+		padding:55px;
+	}
+	input[type="text"], input[type="password"] {
+		width: 88%;
+	}
+}
+@media screen and (max-width: 800px) {
+	.auth, .signup-agileinfo {
+		padding:49px;
+	}
+	input[type="text"], input[type="password"] {
+		width: 87%;
+	}
+	.register-right {
+    margin-top: 4em;
+    } 
+	.auth {
+    width: 40%;
+	}
+}
+@media screen and (max-width: 768px) {
+	.main {
+		width: 90%;
+		margin: 0 auto;
+	}
+}
+@media screen and (max-width: 600px) {
+	.main {
+		width: 85%;
+		margin: 0 auto;
+	}
+	.auth, .signup-agileinfo {
+		width:82%;
+	}
+	input[type="text"], input[type="password"] {
+		width:93%;
+	}
+	.register-right {
+    width: 60%;
+    float: none;
+    text-align: center;
+  }
+  .auth {
+    float: none;
+  }
+  .register-right {
+    width: 60%;
+    float: none;
+    margin: 0 auto;
+  }
+  .main-title {
+    font-size: 35px;
+  }
+  }
+@media screen and (max-width: 1050px) {
+	.auth, .signup-agileinfo {
+		width: 77%;
+	}
+	input[type="text"], input[type="password"] {
+		width: 92%;
+	}
+	.footer p {
+		font-size: 13px;
+	}
+	.main-title {
+    font-size: 30px;
+    }
+	.auth-page {
+		width: 80%;
+	} 
+}
+
+@media screen and (max-width: 520px) {
+	.footer-form {
+		flex-direction: column;
+	}
+	.main-title {
+		font-size: 27px;
+		margin: 35px 0px 30px 0px;
+	}
+	.auth-page {
+		width: 95%;
+	} 
+	.auth, .signup-agileinfo {
+		width: 84%;
+		padding:20px;
+	}
+	.auth h2, .signup-agileinfo h3 {
+		font-size: 20px;
+	}
+	input[type="text"], input[type="password"] {
+		padding: 10px;
+	}
+	input[type="submit"]{
+		padding:10px 0px;
+	}
+	ul li input[type="checkbox"]+label span:first-child {
+		width: 10px;
+		height: 10px;
+		top:3px;
+	}
+	ul li input[type="checkbox"]+label {
+		font-size: 12px;
+		padding-left:20px;
+	}
+	.signup-agileinfo p {
+		font-size: 12.5px;
+	}
+	.main-title {
+    font-size: 23px;
+	}
+  .register-right {
+    width: 72%;
+    float: none;
+    margin: 0 auto;
+}
+} 
+.title {
+	color: rgb(83, 180, 229);
+  text-transform: uppercase;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	text-shadow: 1px 1px 3.5px #a2a8d2;
+}
