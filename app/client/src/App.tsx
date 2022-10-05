@@ -1,13 +1,24 @@
 import AuthPage from 'pages/Auth';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import React from 'react';
+import { useAuth } from 'hooks/auth.hook';
+import { AuthContext } from 'context/AuthContext';
+
 function App() {
+
+  const{ login, logout, jwtToken, userId } = useAuth()
+  const isAuthenticated = !!jwtToken
   return (
     <div className="App">
-    <Routes>
-      <Route path='/login' element={<AuthPage isRegistered />} />
-      <Route path='/registration' element={<AuthPage isRegistered={false} />} />
-    </Routes>
+    <AuthContext.Provider value={{
+      login, logout, jwtToken, userId, isAuthenticated
+    }}>
+      <Routes>
+        <Route path='/login' element={<AuthPage isRegistered />} />
+        <Route path='/registration' element={<AuthPage isRegistered={false} />} />
+      </Routes>
+    </AuthContext.Provider>
+
     </div>
   );
 }

@@ -1,24 +1,32 @@
 import useHTTP from 'hooks/http.hooks';
-import React, { useState } from 'react';
+import React, {  useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { loginValidation } from 'controllers/validation';
+import { AuthContext } from 'context/AuthContext';
 
 function Login() {
-  const [values, setValues] = useState(
-    {
+  const [values, setValues] = useState(() =>
+    ({
       nameOrEmail: '',
       password: '',
       isPasswordVisible: false
-    }
+    })
   );
+  const { loading, error, request, setError } = useHTTP();
+  const auth = useContext(AuthContext)
 
-  const { loading, error, request } = useHTTP();
   const logInHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
 
-    await request('/api/auth/login/', 'POST', values,  {
-          'Content-Type': 'application/json'
-    });
+    if (!loginValidation(values, setError)) {
+      const data = await request('/api/auth/login/', 'POST', values,  {
+        'Content-Type': 'application/json'
+      });
+      if (data?.success) {
+        auth.login(data?.id, data?.token);
+      }
+    }
 
     } catch(e) {  
       const error = e as Error
@@ -63,6 +71,7 @@ function Login() {
           <Link to="/" className='auth-link'>Forgot Password?</Link>
         </div>
         <input type="submit" value="Login" className='auth-submit-login' onClick={logInHandler} disabled={loading} />
+        <div className="error">{error}</div>
         <label htmlFor="" className='needAccount'>
             Need an account? <Link to="/registration" className='auth-link'>Register</Link>
         </label>

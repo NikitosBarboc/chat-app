@@ -1,27 +1,36 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import useHTTP from 'hooks/http.hooks';
-
+import { registerValidation } from 'controllers/validation';
+import { AuthContext } from 'context/AuthContext';
 function Register() {
 
-  const [values, setValues] = useState(
-    {
+  const [values, setValues] = useState(() =>
+    ({
       name: '',
       email: '',
       password: '',
       isPasswordVisible: false
-    }
+    })
   );
   
-  const { loading, error, request } = useHTTP();
+  const { loading, error, request, setError } = useHTTP();
+  const auth = useContext(AuthContext);
+
   const registerHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      if (!registerValidation(values, setError)) {
+        registerValidation(values, setError);
+        const data = await request('/api/auth/register/', 'POST', values,  {
+            'Content-Type': 'application/json'
+        });
+        if (data?.success) {
+          auth.login(data.id, data.token);
+        }
+        
 
-      const data =  await 
-        request('/api/auth/register/', 'POST', values,  {
-          'Content-Type': 'application/json'
-      });
+      }
 
     } catch(e) {  
       const error = e as Error
@@ -67,6 +76,7 @@ function Register() {
             <input type="checkbox" onChange={onChange} name="isPasswordVisible" checked={values.isPasswordVisible} />
         </label>
         <input type="submit" onClick={registerHandler} disabled={loading} value="Register" className='auth-submit-register' />
+        <div className="error">{error}</div>
         <Link className="auth-link haveAccount" to="/login">
           Already have an account?
         </Link>

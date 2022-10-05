@@ -2,8 +2,8 @@ import IAuthResponse from "IAuthResponse";
 import { useCallback, useState } from "react"
 
 const useHTTP = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(() => false);
+  const [error, setError] = useState(() => '');
   const request = useCallback(
     async <T>(
       url: string,
@@ -12,29 +12,24 @@ const useHTTP = () => {
       headers: HeadersInit | undefined = {}
       ) => {
         try {
-
+          setError('');
           setLoading(true);
           const resp = await fetch(url, {body: JSON.stringify(body), method, headers });
           const data = await resp.json() as IAuthResponse;
           if (!resp.ok) {
-            console.error(data.message || 'Something went wrong');
+            setError(data.message)
           }
 
           setLoading(false);
           return data;
         
         } catch(e) {
-          const error = e as Error;
-          setError(error.message)
           setLoading(false);
-          console.error(e);
         }
     }, []
   );
 
-  const clearError = () => setError('')
-
-  return { loading, request, error, clearError }
+  return { loading, request, error, setError }
 }
 
 export default useHTTP;

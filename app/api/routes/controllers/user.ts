@@ -32,6 +32,7 @@ export async function registerUser(req: express.Request, res: express.Response) 
     res.status(201).json({ success: true, message: "User was successful created", token, userId: user.id });
 
   } catch(e) {
+    console.log(e)
     res.status(500).json({ success: false, message: "Something went wrong"});
   }
 }
